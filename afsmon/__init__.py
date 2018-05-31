@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,8 +11,6 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-import argparse
-import configparser
 import collections
 import logging
 import io
@@ -24,9 +21,6 @@ import re
 from datetime import datetime
 from enum import Enum
 from prettytable import PrettyTable
-
-config = None
-
 
 #
 # Fileserver
@@ -48,7 +42,12 @@ Volume = collections.namedtuple(
 class FileServerStats:
     '''AFS fileserver status
 
+    Call ``get_stats()`` to populate the statistics for the server.
     Note most attributes are only set if ``status`` is NORMAL
+
+    Args:
+       hostname (str): The hostname of server to query
+         i.e. argument to ``-server`` for cmd line tools
 
     Attributes:
        status (FileServerStatus): enum of possible status
@@ -59,9 +58,10 @@ class FileServerStats:
          partition on the server
        calls_waiting (:obj:`int`): number of calls waiting for a thread
        idle_threads (:obj:`int`): number of currently idle threads
-       volumes (:obj:`list`): list of :obj:`Volume` tuples for each 
+       volumes (:obj:`list`): list of :obj:`Volume` tuples for each
          volume present on the server
        table (:obj:`PrettyTable`): a printable PrettyTable representation
+
     '''
 
     def _get_volumes(self):
@@ -69,6 +69,12 @@ class FileServerStats:
         logging.debug("Running: %s" % cmd)
         output = subprocess.check_output(
             cmd, stderr=subprocess.STDOUT).decode('ascii')
+
+        # Matching:
+        # mirror.yum-puppetlabs.readonly    536871036 RO   63026403 K  On-line
+        vol_regex = re.compile(
+            '^(?P<vol>[^\s]+)\s+(?P<id>\d+)\s(?P<perms>R[OW])\s+(?P<used>\d+) K'
+        )
 
         # Read the output into chunks where each chunk is the info for
         # one volume.
@@ -86,16 +92,15 @@ class FileServerStats:
                     chunk += lines.readline()
                 # convert it to a Volume()
                 # todo: there's a bunch more we could extract...
-                m = re.search(
-                    '^(?P<volume>[^\s]+)\s+(?P<id>\d+)\s(?P<perms>R[OW])\s+(?P<used>\d+) K',
-                    chunk)
+                m = vol_regex.search(chunk)
                 q = re.search('MaxQuota\s+(?P<quota>\d+) K', chunk)
                 used = int(m['used'])
                 quota = int(q['quota'])
                 percent_used = round(float(used) / float(quota) * 100, 2)
-                self.volumes.append(Volume(
-                    m['volume'], m['id'], m['perms'], used, quota, percent_used))
-                    
+                self.volumes.append(
+                    Volume(m['vol'], m['id'], m['perms'],
+                           used, quota, percent_used))
+
 
     def _get_calls_waiting(self):
         cmd = ["rxdebug", self.hostname, "7000", "-rxstats", "-noconns"]
@@ -161,13 +166,6 @@ class FileServerStats:
         '''Get the complete stats set for the fileserver'''
         self.timestamp = datetime.now()
 
-        self.restart = None
-        self.uptime = None
-        self.partitions = []
-        self.volumes = []
-        self.calls_waiting = None
-        self.idle_threads = None
-
         self._get_fs_stats()
         if self.status == FileServerStatus.NORMAL:
             self._get_partition_stats()
@@ -193,6 +191,8 @@ class FileServerStats:
             self.table.add_row(["%s %%used" % n,
                                       "%s%%" % p.percent_used])
         for v in self.volumes:
+            # Only add the RW volumes to the table as for now we're
+            # mostly just worried about viewing the quota.
             if v.perms == 'RW':
                 n = v.volume
                 self.table.add_row(["%s used" % n, v.used])
@@ -206,12 +206,21 @@ class FileServerStats:
     def __init__(self, hostname):
         self.hostname = hostname
 
-#
-# Volume
-#
+        self.timestamp = None
+        self.restart = None
+        self.uptime = None
+        self.partitions = []
+        self.volumes = []
+        self.calls_waiting = None
+        self.idle_threads = None
+
 
 def get_fs_addresses(cell):
-    '''Get the fileservers associated with a cell'''
+    '''Get the fileservers associated with a cell
+
+    :arg str cell: The cell (e.g. ``openstack.org``)
+    :returns: list of fileservers for the cell
+    '''
     fs = []
     cmd = ["vos", "listaddrs", "-noauth", "-cell", cell]
     logging.debug("Running: %s" % cmd)
@@ -227,62 +236,3 @@ def get_fs_addresses(cell):
             fs.append(line)
 
     return fs
-
-def get_volumes(cell):
-    '''Get the volumes in a cell'''
-    volumes = []
-    cmd = ["vos", "listvldb", "-quiet", "-noauth",
-           "-noresolve", "-nosort", "-cell", cell]
-    logging.debug("Running: %s" % cmd)
-    try:
-        output = subprocess.check_output(
-            cmd, stderr=subprocess.STDOUT).decode('ascii')
-    except subprocess.CalledProcessError:
-        logging.debug(" ... failed!")
-        return []
-
-    # details about the volumes are inset, so just look for non-blank lines
-    for line in output.split('\n'):
-        if line and not line.startswith(' '):
-            volumes.append(line.strip())
-
-    return volumes
-
-
-def main(args=None):
-    global config
-
-    if args is None:
-        args = sys.argv[1:]
-
-    parser = argparse.ArgumentParser(
-        description='An AFS monitoring tool')
-
-    parser.add_argument("config", help="Path to config file")
-    parser.add_argument("-d", '--debug', action="store_true")
-
-    args = parser.parse_args(args)
-
-    if args.debug:
-        logging.basicConfig(level=logging.DEBUG)
-        logging.debug("Debugging enabled")
-
-    config = configparser.RawConfigParser()
-    config.read(args.config)
-
-    cell = config.get('main', 'cell').strip()
-
-#    volumes = get_volumes(cell)
-#    logging.debug(volumes)
-
-    fileservers = get_fs_addresses(cell)
-    print(fileservers)
-
-    for fileserver in fileservers:
-        logging.debug("Finding stats for: %s" % fileserver)
-
-        fs = FileServerStats(fileserver)
-        fs.get_stats()
-        print(fs)
-
-    sys.exit(0)
