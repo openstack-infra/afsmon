@@ -106,6 +106,10 @@ class AFSMonCmd(object):
             logging.basicConfig(level=logging.DEBUG)
             logger.debug("Debugging enabled")
 
+        if not self.args.command:
+            parser.print_help()
+            return 1
+
         if not os.path.exists(self.args.config):
             raise ValueError("Config file %s does not exist" %
                              self.args.config)
