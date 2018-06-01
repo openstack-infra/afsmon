@@ -94,11 +94,11 @@ class FileServerStats(object):
                 # todo: there's a bunch more we could extract...
                 m = vol_regex.search(chunk)
                 q = re.search('MaxQuota\s+(?P<quota>\d+) K', chunk)
-                used = int(m['used'])
-                quota = int(q['quota'])
+                used = int(m.group('used'))
+                quota = int(q.group('quota'))
                 percent_used = round(float(used) / float(quota) * 100, 2)
                 self.volumes.append(
-                    Volume(m['vol'], m['id'], m['perms'],
+                    Volume(m.group('vol'), m.group('id'), m.group('perms'),
                            used, quota, percent_used))
 
     def _get_calls_waiting(self):
@@ -110,10 +110,10 @@ class FileServerStats(object):
         for line in output.split('\n'):
             m = re.search('(?P<waiting>\d+) calls waiting for a thread', line)
             if m:
-                self.calls_waiting = int(m['waiting'])
+                self.calls_waiting = int(m.group('waiting'))
             m = re.search('(?P<idle>\d+) threads are idle', line)
             if m:
-                self.idle_threads = int(m['idle'])
+                self.idle_threads = int(m.group('idle'))
 
     def _get_partition_stats(self):
         cmd = ["vos", "partinfo", self.hostname, "-noauth"]
@@ -127,12 +127,13 @@ class FileServerStats(object):
                 '/vicep(?P<partition>[a-z][a-z]?): '
                 '(?P<free>\d+) K blocks out of total (?P<total>\d+)', line)
             if m:
-                part = 'vicep%s' % m['partition']
+                part = 'vicep%s' % m.group('partition')
                 # (used, free, total, %age)
-                used = int(m['total']) - int(m['free'])
+                used = int(m.group('total')) - int(m.group('free'))
+                percent = round(float(used) / float(m.group('total')) * 100, 2)
                 self.partitions.append(
-                    Partition(part, used, int(m['free']), int(m['total']),
-                              round(float(used) / float(m['total']) * 100, 2)))
+                    Partition(part, used, int(m.group('free')),
+                              int(m.group('total')), percent))
 
     def _get_fs_stats(self):
         cmd = ["bos", "status", self.hostname, "-long", "-noauth"]
@@ -150,7 +151,8 @@ class FileServerStats(object):
             m = re.search(
                 r'last started at (?P<date>\w+ \w+ \w+ \d+:\d+:\d+ \d+)',
                 output)
-            self.restart = datetime.strptime(m['date'], '%a %b %d %H:%M:%S %Y')
+            self.restart = datetime.strptime(m.group('date'),
+                                             '%a %b %d %H:%M:%S %Y')
             self.uptime = self.timestamp - self.restart
 
         elif re.search('temporarily disabled, currently shutdown', output):
