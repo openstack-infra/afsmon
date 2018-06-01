@@ -15,14 +15,15 @@ import argparse
 import configparser
 import logging
 import os
-import sys
 import statsd
+import sys
 
 import afsmon
 
 logger = logging.getLogger("afsmon.main")
 
-class AFSMonCmd:
+
+class AFSMonCmd(object):
 
     def cmd_show(self):
         for fs in self.fileservers:
@@ -58,7 +59,7 @@ class AFSMonCmd:
 
             hn = f.hostname.replace('.', '_')
             self.statsd.gauge('afs.%s.idle_threads' % hn, f.idle_threads)
-            self.statsd.gauge('afs.%s.calls_waiting'% hn, f.calls_waiting)
+            self.statsd.gauge('afs.%s.calls_waiting' % hn, f.calls_waiting)
             for p in f.partitions:
                 self.statsd.gauge(
                     'afs.%s.part.%s.used' % (hn, p.partition), p.used)
@@ -74,7 +75,6 @@ class AFSMonCmd:
                     'afs.%s.vol.%s.used' % (hn, vn), v.used)
                 self.statsd.gauge(
                     'afs.%s.vol.%s.quota' % (hn, vn), v.quota)
-
 
     def main(self, args=None):
         if args is None:
@@ -107,7 +107,8 @@ class AFSMonCmd:
             logger.debug("Debugging enabled")
 
         if not os.path.exists(self.args.config):
-            raise ValueError("Config file %s does not exist" % self.args.config)
+            raise ValueError("Config file %s does not exist" %
+                             self.args.config)
 
         self.config = configparser.RawConfigParser()
         self.config.read(self.args.config)

@@ -12,21 +12,19 @@
 # under the License.
 
 import collections
-import logging
 import io
-import sys
-import subprocess
+import logging
 import re
+import subprocess
+
 
 from datetime import datetime
 from enum import Enum
 from prettytable import PrettyTable
 
+
 logger = logging.getLogger("afsmon")
 
-#
-# Fileserver
-#
 
 class FileServerStatus(Enum):
     NORMAL = 0
@@ -41,7 +39,8 @@ Partition = collections.namedtuple(
 Volume = collections.namedtuple(
     'Voume', 'volume, id, perms, used, quota, percent_used')
 
-class FileServerStats:
+
+class FileServerStats(object):
     '''AFS fileserver status
 
     Call ``get_stats()`` to populate the statistics for the server.
@@ -75,19 +74,18 @@ class FileServerStats:
         # Matching:
         # mirror.yum-puppetlabs.readonly    536871036 RO   63026403 K  On-line
         vol_regex = re.compile(
-            '^(?P<vol>[^\s]+)\s+(?P<id>\d+)\s(?P<perms>R[OW])\s+(?P<used>\d+) K'
+          '^(?P<vol>[^\s]+)\s+(?P<id>\d+)\s(?P<perms>R[OW])\s+(?P<used>\d+) K'
         )
 
         # Read the output into chunks where each chunk is the info for
         # one volume.
-        chunks = []
         lines = io.StringIO(output)
         while True:
             line = lines.readline()
             if not line:
                 break
             chunk = ''
-            if "On-line" in line: # chunks start with this
+            if "On-line" in line:  # chunks start with this
                 chunk += line
                 # read in the next 9 lines of status
                 for i in range(8):
@@ -102,7 +100,6 @@ class FileServerStats:
                 self.volumes.append(
                     Volume(m['vol'], m['id'], m['perms'],
                            used, quota, percent_used))
-
 
     def _get_calls_waiting(self):
         cmd = ["rxdebug", self.hostname, "7000", "-rxstats", "-noconns"]
@@ -191,7 +188,7 @@ class FileServerStats:
             self.table.add_row(["%s free" % n, p.free])
             self.table.add_row(["%s total" % n, p.total])
             self.table.add_row(["%s %%used" % n,
-                                      "%s%%" % p.percent_used])
+                                "%s%%" % p.percent_used])
         for v in self.volumes:
             # Only add the RW volumes to the table as for now we're
             # mostly just worried about viewing the quota.

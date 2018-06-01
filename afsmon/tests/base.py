@@ -13,19 +13,20 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-import os
-
-import logging
 import fixtures
+import logging
+import os
 import select
 import socket
 import testtools
 import threading
 import time
 
+
 _TRUE_VALUES = ('True', 'true', '1', 'yes')
 
 logger = logging.getLogger("afsmon.tests.base")
+
 
 class FakeStatsd(threading.Thread):
     def __init__(self):

@@ -12,8 +12,8 @@
 import afsmon
 import configparser
 
-from afsmon.tests import base
 from afsmon.cmd.main import AFSMonCmd
+from afsmon.tests import base
 
 """
 test_afsmon
@@ -21,6 +21,7 @@ test_afsmon
 
 Tests for `afsmon` module.
 """
+
 
 class TestPyAFSMon(base.TestCase):
 
@@ -68,4 +69,3 @@ class TestPyAFSMon(base.TestCase):
         self.assertReportedStat(
             'afs.afs01_dfw_openstack_org.vol.mirror_moo.quota',
             value='2048', kind='g')
-
