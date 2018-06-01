@@ -22,6 +22,8 @@ from datetime import datetime
 from enum import Enum
 from prettytable import PrettyTable
 
+logger = logging.getLogger("afsmon")
+
 #
 # Fileserver
 #
@@ -66,7 +68,7 @@ class FileServerStats:
 
     def _get_volumes(self):
         cmd = ["vos", "listvol", "-long", "-server", self.hostname]
-        logging.debug("Running: %s" % cmd)
+        logger.debug("Running: %s" % cmd)
         output = subprocess.check_output(
             cmd, stderr=subprocess.STDOUT).decode('ascii')
 
@@ -104,7 +106,7 @@ class FileServerStats:
 
     def _get_calls_waiting(self):
         cmd = ["rxdebug", self.hostname, "7000", "-rxstats", "-noconns"]
-        logging.debug("Running: %s" % cmd)
+        logger.debug("Running: %s" % cmd)
         output = subprocess.check_output(
             cmd, stderr=subprocess.STDOUT).decode('ascii')
 
@@ -118,7 +120,7 @@ class FileServerStats:
 
     def _get_partition_stats(self):
         cmd = ["vos", "partinfo", self.hostname, "-noauth"]
-        logging.debug("Running: %s" % cmd)
+        logger.debug("Running: %s" % cmd)
         output = subprocess.check_output(
             cmd, stderr=subprocess.STDOUT).decode('ascii')
 
@@ -137,12 +139,12 @@ class FileServerStats:
 
     def _get_fs_stats(self):
         cmd = ["bos", "status", self.hostname, "-long", "-noauth"]
-        logging.debug("Running: %s" % cmd)
+        logger.debug("Running: %s" % cmd)
         try:
             output = subprocess.check_output(
                 cmd, stderr=subprocess.STDOUT).decode('ascii')
         except subprocess.CalledProcessError:
-            logging.debug(" ... failed!")
+            logger.debug(" ... failed!")
             self.status = FileServerStatus.NO_CONNECTION
             return
 
@@ -159,7 +161,7 @@ class FileServerStats:
         elif re.search('disabled, currently shutdown', output):
             self.status = FileServerStatus.DISABLED
         else:
-            logging.debug(output)
+            logger.debug(output)
             self.status = FileServerStatus.UNKNOWN
 
     def get_stats(self):
@@ -223,12 +225,12 @@ def get_fs_addresses(cell):
     '''
     fs = []
     cmd = ["vos", "listaddrs", "-noauth", "-cell", cell]
-    logging.debug("Running: %s" % cmd)
+    logger.debug("Running: %s" % cmd)
     try:
         output = subprocess.check_output(
             cmd, stderr=subprocess.STDOUT).decode('ascii')
     except subprocess.CalledProcessError:
-        logging.debug(" ... failed!")
+        logger.debug(" ... failed!")
         return []
 
     for line in output.split('\n'):

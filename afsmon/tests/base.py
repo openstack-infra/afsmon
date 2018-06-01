@@ -15,10 +15,45 @@
 
 import os
 
+import logging
 import fixtures
+import select
+import socket
 import testtools
+import threading
+import time
 
 _TRUE_VALUES = ('True', 'true', '1', 'yes')
+
+logger = logging.getLogger("afsmon.tests.base")
+
+class FakeStatsd(threading.Thread):
+    def __init__(self):
+        threading.Thread.__init__(self)
+        self.daemon = True
+        self.sock = socket.socket(socket.AF_INET6, socket.SOCK_DGRAM)
+        self.sock.bind(('', 0))
+        self.port = self.sock.getsockname()[1]
+        self.wake_read, self.wake_write = os.pipe()
+        self.stats = []
+
+    def run(self):
+        while True:
+            poll = select.poll()
+            poll.register(self.sock, select.POLLIN)
+            poll.register(self.wake_read, select.POLLIN)
+            ret = poll.poll()
+            for (fd, event) in ret:
+                if fd == self.sock.fileno():
+                    data = self.sock.recvfrom(1024)
+                    if not data:
+                        return
+                    self.stats.append(data[0])
+                if fd == self.wake_read:
+                    return
+
+    def stop(self):
+        os.write(self.wake_write, b'1\n')
 
 
 class TestCase(testtools.TestCase):
@@ -47,4 +82,69 @@ class TestCase(testtools.TestCase):
             stderr = self.useFixture(fixtures.StringStream('stderr')).stream
             self.useFixture(fixtures.MonkeyPatch('sys.stderr', stderr))
 
-        self.log_fixture = self.useFixture(fixtures.FakeLogger())
+        self.log_fixture = self.useFixture(
+            fixtures.FakeLogger(level=logging.DEBUG))
+
+        self.statsd = FakeStatsd()
+        os.environ['STATSD_HOST'] = '127.0.0.1'
+        os.environ['STATSD_PORT'] = str(self.statsd.port)
+        self.statsd.start()
+
+    def shutdown(self):
+        self.statsd.stop()
+        self.statsd.join()
+
+    def assertReportedStat(self, key, value=None, kind=None):
+        """Check statsd output
+
+        Check statsd return values.  A ``value`` should specify a
+        ``kind``, however a ``kind`` may be specified without a
+        ``value`` for a generic match.  Leave both empy to just check
+        for key presence.
+
+        :arg str key: The statsd key
+        :arg str value: The expected value of the metric ``key``
+        :arg str kind: The expected type of the metric ``key``  For example
+
+          - ``c`` counter
+          - ``g`` gauge
+          - ``ms`` timing
+          - ``s`` set
+        """
+        if value:
+            self.assertNotEqual(kind, None)
+
+        start = time.time()
+        while time.time() < (start + 5):
+            # Note our fake statsd just queues up results in a queue.
+            # We just keep going through them until we find one that
+            # matches, or fail out.
+            for stat in self.statsd.stats:
+                k, v = stat.decode('utf-8').split(':')
+                if key == k:
+                    if kind is None:
+                        # key with no qualifiers is found
+                        return True
+
+                    s_value, s_kind = v.split('|')
+                    # if no kind match, look for other keys
+                    if kind != s_kind:
+                        continue
+
+                    if value:
+                        # special-case value|ms because statsd can turn
+                        # timing results into float of indeterminate
+                        # length, hence foiling string matching.
+                        if kind == 'ms':
+                            if float(value) == float(s_value):
+                                return True
+                        if value == s_value:
+                            return True
+                        # otherwise keep looking for other matches
+                        continue
+
+                    # this key matches
+                    return True
+            time.sleep(0.1)
+
+        raise Exception("Key %s not found in reported stats" % key)
