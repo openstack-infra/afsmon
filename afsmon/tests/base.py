@@ -14,6 +14,7 @@
 # under the License.
 
 import fixtures
+import itertools
 import logging
 import os
 import select
@@ -119,9 +120,13 @@ class TestCase(testtools.TestCase):
         while time.time() < (start + 5):
             # Note our fake statsd just queues up results in a queue.
             # We just keep going through them until we find one that
-            # matches, or fail out.
-            for stat in self.statsd.stats:
-                k, v = stat.decode('utf-8').split(':')
+            # matches, or fail out.  If a statsd pipeline is used, the
+            # elements are separated by newlines, so flatten out all
+            # the stats first.
+            stats = itertools.chain.from_iterable(
+                [s.decode('utf-8').split('\n') for s in self.statsd.stats])
+            for stat in stats:
+                k, v = stat.split(':')
                 if key == k:
                     if kind is None:
                         # key with no qualifiers is found

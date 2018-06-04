@@ -53,28 +53,34 @@ class AFSMonCmd(object):
                                                  statsd_args['port']))
         self.statsd = statsd.StatsClient(**statsd_args)
 
+        # With a lot of volumes, we can flood out a lot of stats
+        # quickly.  Use a pipeline to batch.
+        pipe = self.statsd.pipeline()
+
         for f in self.fileservers:
             if f.status != afsmon.FileServerStatus.NORMAL:
                 continue
 
             hn = f.hostname.replace('.', '_')
-            self.statsd.gauge('afs.%s.idle_threads' % hn, f.idle_threads)
-            self.statsd.gauge('afs.%s.calls_waiting' % hn, f.calls_waiting)
+            pipe.gauge('afs.%s.idle_threads' % hn, f.idle_threads)
+            pipe.gauge('afs.%s.calls_waiting' % hn, f.calls_waiting)
             for p in f.partitions:
-                self.statsd.gauge(
+                pipe.gauge(
                     'afs.%s.part.%s.used' % (hn, p.partition), p.used)
-                self.statsd.gauge(
+                pipe.gauge(
                     'afs.%s.part.%s.free' % (hn, p.partition), p.free)
-                self.statsd.gauge(
+                pipe.gauge(
                     'afs.%s.part.%s.total' % (hn, p.partition), p.total)
             for v in f.volumes:
                 if v.perms != 'RW':
                     continue
                 vn = v.volume.replace('.', '_')
-                self.statsd.gauge(
+                pipe.gauge(
                     'afs.%s.vol.%s.used' % (hn, vn), v.used)
-                self.statsd.gauge(
+                pipe.gauge(
                     'afs.%s.vol.%s.quota' % (hn, vn), v.quota)
+
+        pipe.send()
 
     def main(self, args=None):
         if args is None:
