@@ -110,7 +110,14 @@ class AFSMonCmd(object):
 
         self.args = parser.parse_args(args)
 
-        if self.args.debug:
+        if not os.path.exists(self.args.config):
+            parser.error("Config file %s does not exist" % self.args.config)
+
+        self.config = configparser.RawConfigParser()
+        self.config.read(self.args.config)
+
+        if self.args.debug or \
+           self.config.getboolean('main', 'debug', fallback=False):
             logging.basicConfig(level=logging.DEBUG)
             logger.debug("Debugging enabled")
 
@@ -118,18 +125,26 @@ class AFSMonCmd(object):
             parser.print_help()
             return 1
 
-        if not os.path.exists(self.args.config):
-            raise ValueError("Config file %s does not exist" %
-                             self.args.config)
+        fs_addrs = []
 
-        self.config = configparser.RawConfigParser()
-        self.config.read(self.args.config)
+        # Look for fileservers from a given cell
+        cell = self.config.get('main', 'cell', fallback=None)
+        if cell:
+            fs_addrs = afsmon.get_fs_addresses(cell.strip())
+            logger.debug("cell %s fileservers: %s" % (
+                cell, ", ".join(fs_addrs)))
 
-        cell = self.config.get('main', 'cell').strip()
+        # Add in any specific fileservers from config
+        cfg_fs = self.config.get('main', 'fileservers', fallback=None)
+        if cfg_fs:
+            cfg_fs = cfg_fs.strip().split('\n')
+            logger.debug("cfg fileservers: %s" % ", ".join(cfg_fs))
+            fs_addrs.extend(cfg_fs)
 
-        fs_addrs = afsmon.get_fs_addresses(cell)
-        logger.debug("Found fileservers: %s" % ", ".join(fs_addrs))
+        if not fs_addrs:
+            raise ValueError("No fileservers found!")
 
+        # populate self.fileservers
         for addr in fs_addrs:
             logger.debug("Finding stats for: %s" % addr)
             fs = afsmon.FileServerStats(addr)
