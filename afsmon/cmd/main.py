@@ -49,8 +49,10 @@ class AFSMonCmd(object):
             statsd_args['host'] = os.environ['STATSD_HOST']
         if os.getenv('STATSD_PORT', None):
             statsd_args['port'] = os.environ['STATSD_PORT']
-        logger.debug("Sending stats to %s:%s" % (statsd_args['host'],
-                                                 statsd_args['port']))
+        logger.debug("Sending stats to %s:%s" % (
+            statsd_args.get('host', 'localhost'),
+            statsd_args.get('port', '8125'))
+        )
         self.statsd = statsd.StatsClient(**statsd_args)
 
         # With a lot of volumes, we can flood out a lot of stats
