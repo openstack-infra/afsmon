@@ -12,12 +12,12 @@ Command-line
 
 The ``afsmon`` tool provides
 
- * ``show`` : produce tabular output of key statistics for a cell,
-   such as threads on file-servers, partition usage, volume usage and
-   quotas.
+* ``show`` : produce tabular output of key statistics for a cell,
+  such as threads on file-servers, partition usage, volume usage and
+  quotas.
 
- * ``statsd`` : report similar results to a `statsd
-   <https://github.com/etsy/statsd>`__ host.
+* ``statsd`` : report similar results to a `statsd
+  <https://github.com/etsy/statsd>`__ host.
 
 Configuration is minimal, see the ``sample.cfg``.
 
@@ -32,5 +32,5 @@ The core of ``afsmon`` should suitable for use in other contexts.
    fs = afsmon.FileServerStats('hostname')
    fs.get_stats()
 
-The ``fs`` object now contains all available information for the
-server, partitions and volumes.
+The ``fs`` object now contains a ``FileServerStats`` with all
+available information for the server, partitions and volumes.
