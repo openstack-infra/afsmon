@@ -14,6 +14,7 @@ import configparser
 
 from afsmon.cmd.main import AFSMonCmd
 from afsmon.tests import base
+from datetime import datetime
 
 """
 test_afsmon
@@ -37,9 +38,10 @@ class TestPyAFSMon(base.TestCase):
         a.idle_threads = 250
         a.calls_waiting = 0
         a.partitions = [afsmon.Partition('vicepa', 512, 512, 1024, 50.00)]
+        d = datetime.now()
         a.volumes = [
-            afsmon.Volume('mirror.foo', 12345678, 'RW', 512, 1024, 50.00),
-            afsmon.Volume('mirror.moo', 87654321, 'RW', 1024, 2048, 50.00),
+            afsmon.Volume('mirror.foo', 12345678, 'RW', 512, 1024, 50.00, d),
+            afsmon.Volume('mirror.moo', 87654321, 'RW', 1024, 2048, 50.00, d),
         ]
 
         b = afsmon.FileServerStats('afs02.ord.openstack.org')
@@ -69,3 +71,6 @@ class TestPyAFSMon(base.TestCase):
         self.assertReportedStat(
             'afs.afs01_dfw_openstack_org.vol.mirror_moo.quota',
             value='2048', kind='g')
+        self.assertReportedStat(
+            'afs.afs01_dfw_openstack_org.vol.mirror_foo.creation',
+            value=str(d.strftime("%s")), kind='g')

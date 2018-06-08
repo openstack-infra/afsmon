@@ -74,13 +74,14 @@ class AFSMonCmd(object):
                 pipe.gauge(
                     'afs.%s.part.%s.total' % (hn, p.partition), p.total)
             for v in f.volumes:
-                if v.perms != 'RW':
-                    continue
                 vn = v.volume.replace('.', '_')
                 pipe.gauge(
                     'afs.%s.vol.%s.used' % (hn, vn), v.used)
                 pipe.gauge(
                     'afs.%s.vol.%s.quota' % (hn, vn), v.quota)
+                pipe.gauge(
+                    'afs.%s.vol.%s.creation' % (hn, vn),
+                    int(v.creation.strftime("%s")))
 
         pipe.send()
 

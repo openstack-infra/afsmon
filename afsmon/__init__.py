@@ -37,7 +37,7 @@ Partition = collections.namedtuple(
     'Partition', 'partition, used, free, total, percent_used')
 
 Volume = collections.namedtuple(
-    'Voume', 'volume, id, perms, used, quota, percent_used')
+    'Voume', 'volume, id, perms, used, quota, percent_used, creation')
 
 
 class FileServerStats(object):
@@ -64,6 +64,12 @@ class FileServerStats(object):
        table (:obj:`PrettyTable`): a printable PrettyTable representation
 
     '''
+
+    # Sample AFS timestamps:
+    #   Tue Nov  2 03:35:15 2016
+    #   Tue Nov 22 03:35:15 2016
+    AFS_DATE_REGEX = '(?P<date>\w+ \w+\s+(\d{1,2}) \d+:\d+:\d+ \d+)'
+    AFS_DATE_STRPTIME = '%a %b %d %H:%M:%S %Y'
 
     def _get_volumes(self):
         cmd = ["vos", "listvol", "-long", "-server", self.hostname]
@@ -97,9 +103,14 @@ class FileServerStats(object):
                 used = int(m.group('used'))
                 quota = int(q.group('quota'))
                 percent_used = round(float(used) / float(quota) * 100, 2)
+                print(chunk)
+                c = re.search(r'Creation\s+%s' % self.AFS_DATE_REGEX, chunk)
+                creation = datetime.strptime(c.group('date'),
+                                             self.AFS_DATE_STRPTIME)
+
                 self.volumes.append(
                     Volume(m.group('vol'), m.group('id'), m.group('perms'),
-                           used, quota, percent_used))
+                           used, quota, percent_used, creation))
 
     def _get_calls_waiting(self):
         cmd = ["rxdebug", self.hostname, "7000", "-rxstats", "-noconns"]
@@ -148,11 +159,9 @@ class FileServerStats(object):
 
         if re.search('currently running normally', output):
             self.status = FileServerStatus.NORMAL
-            m = re.search(
-                r'last started at (?P<date>\w+ \w+ \w+ \d+:\d+:\d+ \d+)',
-                output)
+            m = re.search(r'last started at %s' % self.AFS_DATE_REGEX, output)
             self.restart = datetime.strptime(m.group('date'),
-                                             '%a %b %d %H:%M:%S %Y')
+                                             self.AFS_DATE_STRPTIME)
             self.uptime = self.timestamp - self.restart
 
         elif re.search('temporarily disabled, currently shutdown', output):
@@ -192,14 +201,12 @@ class FileServerStats(object):
             self.table.add_row(["%s %%used" % n,
                                 "%s%%" % p.percent_used])
         for v in self.volumes:
-            # Only add the RW volumes to the table as for now we're
-            # mostly just worried about viewing the quota.
-            if v.perms == 'RW':
-                n = v.volume
-                self.table.add_row(["%s used" % n, v.used])
-                self.table.add_row(["%s quota" % n, v.quota])
-                self.table.add_row(["%s %%used" % n,
-                                    "%s%%" % v.percent_used])
+            n = v.volume
+            self.table.add_row(["%s used" % n, v.used])
+            self.table.add_row(["%s quota" % n, v.quota])
+            self.table.add_row(["%s %%used" % n,
+                                "%s%%" % v.percent_used])
+            self.table.add_row(["%s creation" % n, v.creation])
 
     def __str__(self):
         return str(self.table)
