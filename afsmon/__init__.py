@@ -103,7 +103,6 @@ class FileServerStats(object):
                 used = int(m.group('used'))
                 quota = int(q.group('quota'))
                 percent_used = round(float(used) / float(quota) * 100, 2)
-                print(chunk)
                 c = re.search(r'Creation\s+%s' % self.AFS_DATE_REGEX, chunk)
                 creation = datetime.strptime(c.group('date'),
                                              self.AFS_DATE_STRPTIME)
