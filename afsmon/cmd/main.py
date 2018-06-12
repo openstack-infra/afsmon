@@ -117,9 +117,10 @@ class AFSMonCmd(object):
         self.config = configparser.RawConfigParser()
         self.config.read(self.args.config)
 
+        logfmt = '%(asctime)s %(name)-12s %(levelname)-8s %(message)s'
         if self.args.debug or \
            self.config.getboolean('main', 'debug', fallback=False):
-            logging.basicConfig(level=logging.DEBUG)
+            logging.basicConfig(level=logging.DEBUG, format=logfmt)
             logger.debug("Debugging enabled")
 
         if not self.args.command:
