@@ -24,6 +24,8 @@ import threading
 import time
 
 
+FIXTURE_DIR = os.path.join(os.path.dirname(__file__), 'fixtures')
+
 _TRUE_VALUES = ('True', 'true', '1', 'yes')
 
 logger = logging.getLogger("afsmon.tests.base")

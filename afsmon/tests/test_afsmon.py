@@ -11,6 +11,8 @@
 # under the License.
 import afsmon
 import configparser
+import mock
+import os
 
 from afsmon.cmd.main import AFSMonCmd
 from afsmon.tests import base
@@ -74,3 +76,25 @@ class TestPyAFSMon(base.TestCase):
         self.assertReportedStat(
             'afs.afs01_dfw_openstack_org.vol.mirror_foo.creation',
             value=str(d.strftime("%s")), kind='g')
+
+    @mock.patch('afsmon.subprocess.check_output', autospec=True)
+    def test_vos_listvol_parsing(self, mock_check_output):
+
+        with open(os.path.join(
+                base.FIXTURE_DIR, 'vos-listvol.txt'), 'rb') as f:
+            output = f.read()
+
+        mock_check_output.side_effect = [output]
+
+        fs = afsmon.FileServerStats('fake-hostname')
+        fs._get_volumes()
+
+        self.assertEqual(70, len(fs.volumes))
+
+        # TODO(ianw): could test a bunch more of the parsing
+        test_volume = afsmon.Volume(volume='docs.backup',
+                                    id='536870993', perms='BK', used=17270997,
+                                    quota=50000000, percent_used=34.54,
+                                    creation=datetime(2018, 10, 2, 18, 45, 54))
+
+        self.assertIn(test_volume, fs.volumes)

@@ -1,0 +1,774 @@
+vos: Could not get afs tokens, running unauthenticated.
+Total number of volumes on server afs01.dfw.openstack.org partition /vicepa: 70 
+centos7x64                        536870952 RW          2 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870952 ROnly          0 Backup          0 
+    MaxQuota       5000 K 
+    Creation    Wed Mar 23 15:07:15 2016
+    Copy        Wed Mar 23 15:07:15 2016
+    Backup      Never
+    Last Update Wed Mar 23 15:07:15 2016
+    0 accesses in the past day (i.e., vnode references)
+
+docs                              536870991 RW   17291237 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870991 ROnly          0 Backup  536870993 
+    MaxQuota   50000000 K 
+    Creation    Tue Sep 13 20:25:20 2016
+    Copy        Fri Apr 14 17:27:07 2017
+    Backup      Tue Oct  2 18:45:54 2018
+    Last Access Wed Oct 10 05:05:42 2018
+    Last Update Wed Oct 10 05:05:42 2018
+    541930 accesses in the past day (i.e., vnode references)
+
+docs-old                          536870994 RW   10787086 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870994 ROnly          0 Backup          0 
+    MaxQuota   50000000 K 
+    Creation    Tue Sep 13 20:25:28 2016
+    Copy        Tue Sep 13 20:25:28 2016
+    Backup      Never
+    Last Access Wed Oct 10 02:55:20 2018
+    Last Update Tue Jan 10 16:50:07 2017
+    4 accesses in the past day (i.e., vnode references)
+
+docs.backup                       536870993 BK   17270997 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870991 ROnly          0 Backup          0 
+    MaxQuota   50000000 K 
+    Creation    Tue Oct  2 18:45:54 2018
+    Copy        Tue Oct  2 18:45:54 2018
+    Backup      Tue Oct  2 18:45:54 2018
+    Last Access Tue Oct  2 18:45:34 2018
+    Last Update Tue Oct  2 18:40:30 2018
+    0 accesses in the past day (i.e., vnode references)
+
+docs.dev                          536870997 RW     655688 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870997 ROnly  536870998 Backup          0 
+    MaxQuota   50000000 K 
+    Creation    Tue Oct  4 15:17:39 2016
+    Copy        Tue Oct  4 15:17:39 2016
+    Backup      Never
+    Last Access Wed Oct 10 04:31:45 2018
+    Last Update Wed Oct 10 04:31:45 2018
+    22871 accesses in the past day (i.e., vnode references)
+
+docs.dev.readonly                 536870998 RO     655688 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870997 ROnly  536870998 Backup          0 
+    MaxQuota   50000000 K 
+    Creation    Wed Oct 10 04:35:44 2018
+    Copy        Sat Jan  7 00:55:16 2017
+    Backup      Never
+    Last Access Wed Oct 10 04:31:45 2018
+    Last Update Wed Oct 10 04:31:45 2018
+    0 accesses in the past day (i.e., vnode references)
+
+docs.readonly                     536870992 RO   17291236 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870991 ROnly          0 Backup  536870993 
+    MaxQuota   50000000 K 
+    Creation    Wed Oct 10 04:45:02 2018
+    Copy        Fri Jan  6 22:09:14 2017
+    Backup      Tue Oct  2 18:45:54 2018
+    Last Access Wed Oct 10 04:45:19 2018
+    Last Update Wed Oct 10 04:43:25 2018
+    305 accesses in the past day (i.e., vnode references)
+
+mirror                            536870934 RW         28 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870934 ROnly  536870935 Backup          0 
+    MaxQuota       5000 K 
+    Creation    Tue Oct 21 14:46:29 2014
+    Copy        Tue Oct 21 14:46:29 2014
+    Backup      Never
+    Last Access Wed Oct 10 04:59:19 2018
+    Last Update Mon Jun 25 23:40:33 2018
+    319 accesses in the past day (i.e., vnode references)
+
+mirror.apt-puppetlabs             536871038 RW    1494473 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536871038 ROnly  536871039 Backup          0 
+    MaxQuota  100000000 K 
+    Creation    Wed Jan 24 00:59:12 2018
+    Copy        Wed Jan 24 00:59:12 2018
+    Backup      Never
+    Last Access Wed Oct 10 04:38:35 2018
+    Last Update Wed Oct 10 04:38:35 2018
+    1392 accesses in the past day (i.e., vnode references)
+
+mirror.apt-puppetlabs.readonly    536871039 RO    1494473 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536871038 ROnly  536871039 Backup          0 
+    MaxQuota  100000000 K 
+    Creation    Wed Oct 10 04:38:35 2018
+    Copy        Wed Jan 24 04:11:39 2018
+    Backup      Never
+    Last Access Wed Oct 10 05:06:08 2018
+    Last Update Wed Oct 10 04:38:35 2018
+    2 accesses in the past day (i.e., vnode references)
+
+mirror.centos                     536870961 RW   27789923 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870961 ROnly  536870962 Backup          0 
+    MaxQuota  100000000 K 
+    Creation    Mon May  9 15:24:40 2016
+    Copy        Mon May  9 15:24:40 2016
+    Backup      Never
+    Last Access Wed Oct 10 04:36:07 2018
+    Last Update Wed Oct 10 04:36:07 2018
+    235725 accesses in the past day (i.e., vnode references)
+
+mirror.centos.readonly            536870962 RO   27789923 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870961 ROnly  536870962 Backup          0 
+    MaxQuota  100000000 K 
+    Creation    Wed Oct 10 04:36:08 2018
+    Copy        Mon May  9 15:29:02 2016
+    Backup      Never
+    Last Access Wed Oct 10 05:09:55 2018
+    Last Update Wed Oct 10 04:36:07 2018
+    9664 accesses in the past day (i.e., vnode references)
+
+mirror.deb-docker                 536871020 RW      58703 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536871020 ROnly  536871021 Backup          0 
+    MaxQuota   50000000 K 
+    Creation    Wed May  3 13:30:28 2017
+    Copy        Wed May  3 13:30:28 2017
+    Backup      Never
+    Last Access Wed Oct 10 04:33:33 2018
+    Last Update Wed Oct 10 04:33:33 2018
+    492 accesses in the past day (i.e., vnode references)
+
+mirror.deb-docker.readonly        536871021 RO      58703 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536871020 ROnly  536871021 Backup          0 
+    MaxQuota   50000000 K 
+    Creation    Wed Oct 10 04:33:33 2018
+    Copy        Wed May  3 13:30:58 2017
+    Backup      Never
+    Last Access Wed Oct 10 05:06:08 2018
+    Last Update Wed Oct 10 04:33:33 2018
+    20 accesses in the past day (i.e., vnode references)
+
+mirror.deb-hammer                 536870958 RW    1964836 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870958 ROnly  536870959 Backup          0 
+    MaxQuota   50000000 K 
+    Creation    Thu Apr 14 21:28:16 2016
+    Copy        Thu Apr 14 21:28:16 2016
+    Backup      Never
+    Last Access Wed Oct 10 04:05:35 2018
+    Last Update Wed Oct 10 04:05:35 2018
+    1302 accesses in the past day (i.e., vnode references)
+
+mirror.deb-hammer.readonly        536870959 RO    1964836 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870958 ROnly  536870959 Backup          0 
+    MaxQuota   50000000 K 
+    Creation    Wed Oct 10 04:05:35 2018
+    Copy        Thu Apr 14 21:31:35 2016
+    Backup      Never
+    Last Access Wed Oct 10 05:03:40 2018
+    Last Update Wed Oct 10 04:05:35 2018
+    11 accesses in the past day (i.e., vnode references)
+
+mirror.deb-jewel                  536870979 RW    5779453 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870979 ROnly  536870980 Backup          0 
+    MaxQuota   50000000 K 
+    Creation    Tue Jul 19 18:02:56 2016
+    Copy        Tue Jul 19 18:02:56 2016
+    Backup      Never
+    Last Access Wed Oct 10 04:18:07 2018
+    Last Update Wed Oct 10 04:18:07 2018
+    78 accesses in the past day (i.e., vnode references)
+
+mirror.deb-jewel.readonly         536870980 RO    5779453 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870979 ROnly  536870980 Backup          0 
+    MaxQuota   50000000 K 
+    Creation    Thu Apr 26 22:18:41 2018
+    Copy        Tue Jul 19 18:03:25 2016
+    Backup      Never
+    Last Access Wed Oct 10 05:02:39 2018
+    Last Update Thu Apr 26 22:18:41 2018
+    25 accesses in the past day (i.e., vnode references)
+
+mirror.deb-luminous               536871026 RW    3831696 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536871026 ROnly  536871027 Backup          0 
+    MaxQuota   50000000 K 
+    Creation    Mon Oct  9 05:20:11 2017
+    Copy        Mon Oct  9 05:20:11 2017
+    Backup      Never
+    Last Access Wed Oct 10 04:31:34 2018
+    Last Update Wed Oct 10 04:31:34 2018
+    1734 accesses in the past day (i.e., vnode references)
+
+mirror.deb-luminous.readonly      536871027 RO    3831696 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536871026 ROnly  536871027 Backup          0 
+    MaxQuota   50000000 K 
+    Creation    Wed Oct 10 04:31:35 2018
+    Copy        Mon Oct  9 05:21:19 2017
+    Backup      Never
+    Last Access Wed Oct 10 05:06:08 2018
+    Last Update Wed Oct 10 04:31:34 2018
+    4 accesses in the past day (i.e., vnode references)
+
+mirror.deb-mimic                  536871047 RW    4154651 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536871047 ROnly  536871048 Backup          0 
+    MaxQuota   10000000 K 
+    Creation    Mon Jun 18 05:02:48 2018
+    Copy        Mon Jun 18 05:02:48 2018
+    Backup      Never
+    Last Access Wed Oct 10 04:20:35 2018
+    Last Update Wed Oct 10 04:20:35 2018
+    1869 accesses in the past day (i.e., vnode references)
+
+mirror.deb-mimic.readonly         536871048 RO    4154651 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536871047 ROnly  536871048 Backup          0 
+    MaxQuota   10000000 K 
+    Creation    Wed Oct 10 04:20:36 2018
+    Copy        Mon Jun 18 05:03:31 2018
+    Backup      Never
+    Last Access Wed Oct 10 05:06:09 2018
+    Last Update Wed Oct 10 04:20:35 2018
+    6 accesses in the past day (i.e., vnode references)
+
+mirror.deb-openstack              536870976 RW    1387714 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870976 ROnly  536870977 Backup          0 
+    MaxQuota  100000000 K 
+    Creation    Mon Jul 11 14:03:11 2016
+    Copy        Mon Jul 11 14:03:11 2016
+    Backup      Never
+    Last Access Tue Jul 24 01:11:16 2018
+    Last Update Fri Apr 28 16:30:51 2017
+    0 accesses in the past day (i.e., vnode references)
+
+mirror.deb-openstack.readonly     536870977 RO    1387714 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870976 ROnly  536870977 Backup          0 
+    MaxQuota  100000000 K 
+    Creation    Fri Apr 28 16:31:00 2017
+    Copy        Mon Jul 11 14:03:44 2016
+    Backup      Never
+    Last Access Wed Oct 10 05:02:39 2018
+    Last Update Fri Apr 28 16:30:51 2017
+    25 accesses in the past day (i.e., vnode references)
+
+mirror.debian                     536870982 RW  166147524 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870982 ROnly  536870983 Backup          0 
+    MaxQuota  600000000 K 
+    Creation    Wed Jul 20 17:02:07 2016
+    Copy        Wed Jul 20 17:02:07 2016
+    Backup      Never
+    Last Access Wed Oct 10 04:33:54 2018
+    Last Update Wed Oct 10 04:33:54 2018
+    1615096 accesses in the past day (i.e., vnode references)
+
+mirror.debian-security            536871050 RW   16250195 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536871050 ROnly  536871051 Backup          0 
+    MaxQuota  100000000 K 
+    Creation    Mon Jun 25 23:33:32 2018
+    Copy        Mon Jun 25 23:33:32 2018
+    Backup      Never
+    Last Access Wed Oct 10 04:15:41 2018
+    Last Update Wed Oct 10 04:15:41 2018
+    41112 accesses in the past day (i.e., vnode references)
+
+mirror.debian-security.readonly   536871051 RO   16250195 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536871050 ROnly  536871051 Backup          0 
+    MaxQuota  100000000 K 
+    Creation    Wed Oct 10 04:15:41 2018
+    Copy        Mon Jun 25 23:34:05 2018
+    Backup      Never
+    Last Access Wed Oct 10 05:02:38 2018
+    Last Update Wed Oct 10 04:15:41 2018
+    6 accesses in the past day (i.e., vnode references)
+
+mirror.debian.readonly            536870983 RO  166147524 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870982 ROnly  536870983 Backup          0 
+    MaxQuota  600000000 K 
+    Creation    Wed Oct 10 04:33:56 2018
+    Copy        Wed Jul 20 17:02:40 2016
+    Backup      Never
+    Last Access Wed Oct 10 05:06:08 2018
+    Last Update Wed Oct 10 04:33:54 2018
+    5 accesses in the past day (i.e., vnode references)
+
+mirror.epel                       536870967 RW   14297568 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870967 ROnly  536870968 Backup          0 
+    MaxQuota  100000000 K 
+    Creation    Tue May 17 15:24:30 2016
+    Copy        Tue May 17 15:24:30 2016
+    Backup      Never
+    Last Access Wed Oct 10 04:26:05 2018
+    Last Update Wed Oct 10 04:26:05 2018
+    114867 accesses in the past day (i.e., vnode references)
+
+mirror.epel.readonly              536870968 RO   14297568 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870967 ROnly  536870968 Backup          0 
+    MaxQuota  100000000 K 
+    Creation    Wed Oct 10 04:26:05 2018
+    Copy        Tue May 17 15:26:10 2016
+    Backup      Never
+    Last Access Wed Oct 10 05:06:43 2018
+    Last Update Wed Oct 10 04:26:05 2018
+    159 accesses in the past day (i.e., vnode references)
+
+mirror.fedora                     536871006 RW  430646653 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536871006 ROnly  536871007 Backup          0 
+    MaxQuota  500000000 K 
+    Creation    Wed Jan 11 16:12:27 2017
+    Copy        Wed Jan 11 16:12:27 2017
+    Backup      Never
+    Last Access Wed Oct 10 04:06:42 2018
+    Last Update Wed Oct 10 04:06:42 2018
+    1376823 accesses in the past day (i.e., vnode references)
+
+mirror.fedora.readonly            536871007 RO  430646653 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536871006 ROnly  536871007 Backup          0 
+    MaxQuota  500000000 K 
+    Creation    Wed Oct 10 04:06:43 2018
+    Copy        Wed Jan 11 16:13:02 2017
+    Backup      Never
+    Last Access Wed Oct 10 05:07:51 2018
+    Last Update Wed Oct 10 04:06:42 2018
+    664 accesses in the past day (i.e., vnode references)
+
+mirror.gem                        536871003 RW  308345488 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536871003 ROnly  536871004 Backup          0 
+    MaxQuota  400000000 K 
+    Creation    Fri Dec 23 16:09:41 2016
+    Copy        Fri Dec 23 16:09:41 2016
+    Backup      Never
+    Last Access Tue Jul 24 01:11:17 2018
+    Last Update Thu Oct 12 14:55:11 2017
+    0 accesses in the past day (i.e., vnode references)
+
+mirror.gem.readonly               536871004 RO          2 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536871003 ROnly  536871004 Backup          0 
+    MaxQuota  100000000 K 
+    Creation    Fri Dec 23 18:15:10 2016
+    Copy        Fri Dec 23 16:10:39 2016
+    Backup      Never
+    Last Access Wed Oct 10 05:02:39 2018
+    Last Update Fri Dec 23 18:14:26 2016
+    17 accesses in the past day (i.e., vnode references)
+
+mirror.git                        536870937 RW    2117412 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870937 ROnly          0 Backup          0 
+    MaxQuota    8000000 K 
+    Creation    Sat Jun 27 00:01:18 2015
+    Copy        Sat Jun 27 00:01:18 2015
+    Backup      Never
+    Last Access Wed Oct  3 16:02:11 2018
+    Last Update Mon Aug  3 13:39:02 2015
+    0 accesses in the past day (i.e., vnode references)
+
+mirror.opensuse                   536871009 RW  184873939 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536871009 ROnly  536871010 Backup          0 
+    MaxQuota  400000000 K 
+    Creation    Mon Apr  3 00:32:28 2017
+    Copy        Mon Apr  3 00:32:28 2017
+    Backup      Never
+    Last Access Wed Oct 10 00:44:33 2018
+    Last Update Wed Oct 10 00:44:33 2018
+    427909 accesses in the past day (i.e., vnode references)
+
+mirror.opensuse.readonly          536871010 RO  184873939 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536871009 ROnly  536871010 Backup          0 
+    MaxQuota  400000000 K 
+    Creation    Wed Oct 10 00:44:38 2018
+    Copy        Mon Apr  3 00:44:53 2017
+    Backup      Never
+    Last Access Wed Oct 10 05:09:23 2018
+    Last Update Wed Oct 10 00:44:33 2018
+    28853 accesses in the past day (i.e., vnode references)
+
+mirror.pypi                       536870931 RW 1999990784 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870931 ROnly  536870932 Backup          0 
+    MaxQuota 2000000000 K 
+    Creation    Tue Oct 21 14:44:36 2014
+    Copy        Tue Oct 21 14:44:36 2014
+    Backup      Never
+    Last Access Wed Oct 10 04:59:19 2018
+    Last Update Thu Jul 19 20:50:19 2018
+    12 accesses in the past day (i.e., vnode references)
+
+mirror.pypi.readonly              536870932 RO 1999990765 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870931 ROnly  536870932 Backup          0 
+    MaxQuota 2000000000 K 
+    Creation    Thu Jul 19 19:26:57 2018
+    Copy        Fri Oct 24 15:53:33 2014
+    Backup      Never
+    Last Access Wed Oct 10 05:02:38 2018
+    Last Update Thu Jul 19 19:26:26 2018
+    50 accesses in the past day (i.e., vnode references)
+
+mirror.readonly                   536870935 RO         28 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870934 ROnly  536870935 Backup          0 
+    MaxQuota       5000 K 
+    Creation    Mon Jun 25 23:40:42 2018
+    Copy        Fri Oct 24 15:54:23 2014
+    Backup      Never
+    Last Access Wed Oct 10 05:09:57 2018
+    Last Update Mon Jun 25 23:40:33 2018
+    1315 accesses in the past day (i.e., vnode references)
+
+mirror.ubuntu                     536870949 RW  454132086 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870949 ROnly  536870950 Backup  536870951 
+    MaxQuota  500000000 K 
+    Creation    Fri Feb  5 16:35:26 2016
+    Copy        Fri Feb  5 16:35:26 2016
+    Backup      Never
+    Last Access Wed Oct 10 04:12:37 2018
+    Last Update Wed Oct 10 04:12:37 2018
+    3650757 accesses in the past day (i.e., vnode references)
+
+mirror.ubuntu-cloud               536870970 RW    5721404 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870970 ROnly  536870971 Backup          0 
+    MaxQuota  100000000 K 
+    Creation    Mon Jun 27 19:48:56 2016
+    Copy        Mon Jun 27 19:48:56 2016
+    Backup      Never
+    Last Access Wed Oct 10 04:05:50 2018
+    Last Update Wed Oct 10 04:05:50 2018
+    54241 accesses in the past day (i.e., vnode references)
+
+mirror.ubuntu-cloud.readonly      536870971 RO    5721404 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870970 ROnly  536870971 Backup          0 
+    MaxQuota  100000000 K 
+    Creation    Wed Oct 10 04:05:50 2018
+    Copy        Mon Jun 27 19:49:58 2016
+    Backup      Never
+    Last Access Wed Oct 10 05:08:44 2018
+    Last Update Wed Oct 10 04:05:50 2018
+    2260 accesses in the past day (i.e., vnode references)
+
+mirror.ubuntu-ports               536871041 RW  278563698 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536871041 ROnly  536871042 Backup          0 
+    MaxQuota  500000000 K 
+    Creation    Tue Mar  6 02:53:54 2018
+    Copy        Tue Mar  6 02:53:54 2018
+    Backup      Never
+    Last Access Wed Oct 10 04:07:51 2018
+    Last Update Wed Oct 10 04:07:51 2018
+    2581772 accesses in the past day (i.e., vnode references)
+
+mirror.ubuntu-ports.readonly      536871042 RO  278563698 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536871041 ROnly  536871042 Backup          0 
+    MaxQuota  500000000 K 
+    Creation    Wed Oct 10 04:07:52 2018
+    Copy        Tue Mar  6 02:54:29 2018
+    Backup      Never
+    Last Access Wed Oct 10 05:02:38 2018
+    Last Update Wed Oct 10 04:07:51 2018
+    686 accesses in the past day (i.e., vnode references)
+
+mirror.ubuntu.readonly            536870950 RO  454132086 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870949 ROnly  536870950 Backup  536870951 
+    MaxQuota  500000000 K 
+    Creation    Wed Oct 10 04:12:38 2018
+    Copy        Fri Feb  5 16:36:25 2016
+    Backup      Never
+    Last Access Wed Oct 10 05:08:45 2018
+    Last Update Wed Oct 10 04:12:37 2018
+    18810 accesses in the past day (i.e., vnode references)
+
+mirror.wheel.bionicx64            536871044 RW    2332734 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536871044 ROnly  536871045 Backup          0 
+    MaxQuota  100000000 K 
+    Creation    Wed Mar  7 15:07:46 2018
+    Copy        Wed Mar  7 15:07:46 2018
+    Backup      Never
+    Last Access Tue Oct  9 06:27:06 2018
+    Last Update Mon Sep 17 06:39:27 2018
+    0 accesses in the past day (i.e., vnode references)
+
+mirror.wheel.bionicx64.readonly   536871045 RO    2332734 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536871044 ROnly  536871045 Backup          0 
+    MaxQuota  100000000 K 
+    Creation    Mon Sep 17 06:56:13 2018
+    Copy        Wed Mar  7 15:08:45 2018
+    Backup      Never
+    Last Access Wed Oct 10 05:04:59 2018
+    Last Update Mon Sep 17 06:39:27 2018
+    38755 accesses in the past day (i.e., vnode references)
+
+mirror.wheel.cent7x64             536870955 RW    4274575 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870955 ROnly  536870956 Backup          0 
+    MaxQuota   20000000 K 
+    Creation    Wed Mar 23 15:19:07 2016
+    Copy        Wed Mar 23 15:19:07 2016
+    Backup      Never
+    Last Access Tue Oct  9 06:21:40 2018
+    Last Update Mon Sep 17 06:54:00 2018
+    0 accesses in the past day (i.e., vnode references)
+
+mirror.wheel.cent7x64.readonly    536870956 RO    4274575 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870955 ROnly  536870956 Backup          0 
+    MaxQuota   20000000 K 
+    Creation    Mon Sep 17 06:56:28 2018
+    Copy        Wed Mar 23 16:50:20 2016
+    Backup      Never
+    Last Access Wed Oct 10 04:57:49 2018
+    Last Update Mon Sep 17 06:54:00 2018
+    30198 accesses in the past day (i.e., vnode references)
+
+mirror.wheel.trustyx64            536870946 RW    5506064 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870946 ROnly  536870947 Backup          0 
+    MaxQuota   20000000 K 
+    Creation    Tue Feb  2 18:00:30 2016
+    Copy        Tue Feb  2 18:00:30 2016
+    Backup      Never
+    Last Access Tue Oct  9 06:14:56 2018
+    Last Update Mon Sep 17 06:24:55 2018
+    0 accesses in the past day (i.e., vnode references)
+
+mirror.wheel.trustyx64.readonly   536870947 RO    5506064 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870946 ROnly  536870947 Backup          0 
+    MaxQuota   20000000 K 
+    Creation    Mon Sep 17 06:56:21 2018
+    Copy        Tue Feb  2 18:05:19 2016
+    Backup      Never
+    Last Access Wed Oct 10 01:55:09 2018
+    Last Update Mon Sep 17 06:24:55 2018
+    2870 accesses in the past day (i.e., vnode references)
+
+mirror.wheel.xenialx64            536870973 RW    5118483 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870973 ROnly  536870974 Backup          0 
+    MaxQuota  100000000 K 
+    Creation    Thu Jun 30 14:16:16 2016
+    Copy        Thu Jun 30 14:16:16 2016
+    Backup      Never
+    Last Access Tue Oct  9 06:17:29 2018
+    Last Update Mon Sep 17 15:09:27 2018
+    0 accesses in the past day (i.e., vnode references)
+
+mirror.wheel.xenialx64.readonly   536870974 RO    5118483 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870973 ROnly  536870974 Backup          0 
+    MaxQuota  100000000 K 
+    Creation    Mon Sep 17 15:11:28 2018
+    Copy        Thu Jun 30 14:16:49 2016
+    Backup      Never
+    Last Access Wed Oct 10 05:09:59 2018
+    Last Update Mon Sep 17 15:09:27 2018
+    92798 accesses in the past day (i.e., vnode references)
+
+mirror.yum-puppetlabs             536871035 RW   72933077 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536871035 ROnly  536871036 Backup          0 
+    MaxQuota  100000000 K 
+    Creation    Wed Jan 24 00:54:34 2018
+    Copy        Wed Jan 24 00:54:34 2018
+    Backup      Never
+    Last Access Wed Oct 10 04:40:06 2018
+    Last Update Wed Oct 10 04:40:06 2018
+    61350 accesses in the past day (i.e., vnode references)
+
+mirror.yum-puppetlabs.readonly    536871036 RO   72933077 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536871035 ROnly  536871036 Backup          0 
+    MaxQuota  100000000 K 
+    Creation    Wed Oct 10 04:40:06 2018
+    Copy        Wed Jan 24 00:55:25 2018
+    Backup      Never
+    Last Access Wed Oct 10 04:42:33 2018
+    Last Update Wed Oct 10 04:40:06 2018
+    32 accesses in the past day (i.e., vnode references)
+
+project                           536871029 RW          4 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536871029 ROnly  536871030 Backup          0 
+    MaxQuota       5000 K 
+    Creation    Fri Jan 19 21:35:24 2018
+    Copy        Fri Jan 19 21:35:24 2018
+    Backup      Never
+    Last Access Wed Oct 10 05:02:43 2018
+    Last Update Mon Sep 10 16:08:18 2018
+    24 accesses in the past day (i.e., vnode references)
+
+project.readonly                  536871030 RO          4 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536871029 ROnly  536871030 Backup          0 
+    MaxQuota       5000 K 
+    Creation    Wed Oct  3 18:46:03 2018
+    Copy        Fri Jan 19 21:39:10 2018
+    Backup      Never
+    Last Access Wed Oct  3 18:46:28 2018
+    Last Update Mon Sep 10 16:08:18 2018
+    0 accesses in the past day (i.e., vnode references)
+
+project.starlingx                 536871053 RW       5798 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536871053 ROnly          0 Backup          0 
+    MaxQuota     100000 K 
+    Creation    Mon Sep 10 15:55:25 2018
+    Copy        Mon Sep 10 15:55:25 2018
+    Backup      Never
+    Last Access Wed Oct 10 03:54:45 2018
+    Last Update Wed Oct 10 03:54:45 2018
+    3042 accesses in the past day (i.e., vnode references)
+
+project.zuul                      536871032 RW      23712 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536871032 ROnly          0 Backup          0 
+    MaxQuota     100000 K 
+    Creation    Fri Jan 19 21:44:24 2018
+    Copy        Fri Jan 19 21:44:24 2018
+    Backup      Never
+    Last Access Wed Oct 10 05:10:00 2018
+    Last Update Wed Oct 10 05:02:44 2018
+    9322 accesses in the past day (i.e., vnode references)
+
+root.afs                          536870912 RW        214 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870912 ROnly          0 Backup          0 
+    MaxQuota       5000 K 
+    Creation    Sat Oct 18 23:55:15 2014
+    Copy        Sun Oct 19 06:23:19 2014
+    Backup      Never
+    Last Access Sun Oct 19 01:01:35 2014
+    Last Update Sun Oct 19 01:01:35 2014
+    0 accesses in the past day (i.e., vnode references)
+
+root.afs.readonly                 536870913 RO        214 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870912 ROnly          0 Backup          0 
+    MaxQuota       5000 K 
+    Creation    Sun Oct 19 16:00:26 2014
+    Copy        Sun Oct 19 01:01:35 2014
+    Backup      Never
+    Last Access Tue Aug  7 06:21:19 2018
+    Last Update Sun Oct 19 01:01:35 2014
+    0 accesses in the past day (i.e., vnode references)
+
+root.cell                         536870915 RW          9 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870915 ROnly  536870916 Backup          0 
+    MaxQuota       5000 K 
+    Creation    Sun Oct 19 00:58:24 2014
+    Copy        Sun Oct 19 00:58:24 2014
+    Backup      Never
+    Last Access Wed Oct 10 05:02:43 2018
+    Last Update Tue Oct  2 19:18:45 2018
+    149 accesses in the past day (i.e., vnode references)
+
+root.cell.readonly                536870916 RO          9 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870915 ROnly  536870916 Backup          0 
+    MaxQuota       5000 K 
+    Creation    Wed Oct  3 18:44:26 2018
+    Copy        Sun Oct 19 01:01:35 2014
+    Backup      Never
+    Last Access Wed Oct 10 05:04:05 2018
+    Last Update Tue Oct  2 19:18:45 2018
+    139 accesses in the past day (i.e., vnode references)
+
+service                           536870921 RW          2 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870921 ROnly          0 Backup          0 
+    MaxQuota       5000 K 
+    Creation    Sun Oct 19 01:01:35 2014
+    Copy        Sun Oct 19 01:01:35 2014
+    Backup      Never
+    Last Access Wed Oct 10 02:55:19 2018
+    Last Update Tue Oct 21 17:56:23 2014
+    1 accesses in the past day (i.e., vnode references)
+
+starlingx.io.readonly             536871057 RO          2 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536871056 ROnly  536871057 Backup          0 
+    MaxQuota       5000 K 
+    Creation    Tue Oct  2 18:56:39 2018
+    Copy        Tue Oct  2 18:56:39 2018
+    Backup      Never
+    Last Access Tue Oct  2 18:55:15 2018
+    Last Update Tue Oct  2 18:51:08 2018
+    0 accesses in the past day (i.e., vnode references)
+
+user                              536870918 RW     111297 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870918 ROnly  536870919 Backup          0 
+    MaxQuota    5000000 K 
+    Creation    Sun Oct 19 01:00:39 2014
+    Copy        Sun Oct 19 01:00:39 2014
+    Backup      Never
+    Last Access Wed Oct 10 02:55:19 2018
+    Last Update Tue Nov 22 03:38:23 2016
+    1 accesses in the past day (i.e., vnode references)
+
+user.corvus                       536871000 RW        210 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536871000 ROnly  536871001 Backup          0 
+    MaxQuota       5000 K 
+    Creation    Tue Nov 22 03:35:15 2016
+    Copy        Tue Nov 22 03:35:15 2016
+    Backup      Never
+    Last Access Wed Oct  3 16:02:17 2018
+    Last Update Mon Oct  9 23:05:10 2017
+    0 accesses in the past day (i.e., vnode references)
+
+user.corvus.readonly              536871001 RO          3 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536871000 ROnly  536871001 Backup          0 
+    MaxQuota       5000 K 
+    Creation    Tue Nov 22 15:39:58 2016
+    Copy        Tue Nov 22 03:48:03 2016
+    Backup      Never
+    Last Access Tue Nov 22 15:38:04 2016
+    Last Update Tue Nov 22 15:38:03 2016
+    0 accesses in the past day (i.e., vnode references)
+
+user.readonly                     536870919 RO     111296 K  On-line
+    afs01.dfw.openstack.org /vicepa 
+    RWrite  536870918 ROnly  536870919 Backup          0 
+    MaxQuota    5000000 K 
+    Creation    Sat Jan 30 02:28:58 2016
+    Copy        Sat Jan 30 01:45:42 2016
+    Backup      Never
+    Last Access Sat Jan 30 02:27:11 2016
+    Last Update Sat Jan 30 02:27:11 2016
+    0 accesses in the past day (i.e., vnode references)
+
+
+Total volumes onLine 70 ; Total volumes offLine 0 ; Total busy 0
+

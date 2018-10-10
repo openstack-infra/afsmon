@@ -37,7 +37,7 @@ Partition = collections.namedtuple(
     'Partition', 'partition, used, free, total, percent_used')
 
 Volume = collections.namedtuple(
-    'Voume', 'volume, id, perms, used, quota, percent_used, creation')
+    'Volume', 'volume, id, perms, used, quota, percent_used, creation')
 
 
 class FileServerStats(object):
@@ -80,7 +80,7 @@ class FileServerStats(object):
         # Matching:
         # mirror.yum-puppetlabs.readonly    536871036 RO   63026403 K  On-line
         vol_regex = re.compile(
-          '^(?P<vol>[^\s]+)\s+(?P<id>\d+)\s(?P<perms>R[OW])\s+(?P<used>\d+) K'
+            '^(?P<vol>[^\s]+)\s+(?P<id>\d+)\s(?P<perms>R[OW]|BK)\s+(?P<used>\d+) K'  # noqa: E501
         )
 
         # Read the output into chunks where each chunk is the info for
